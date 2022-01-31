@@ -5,7 +5,7 @@
     become_user: root
     tasks:
       - name: install plugins 
-        shell: wget http://10.250.0.30/admin_remi/mitigation_wp_webshell/master/contact-form-7.5.5.4.zip
+        shell: wget https://github.com/Remsstorm/mitigation_wp_webshell/main/contact-form-7.5.5.4.zip
         args:
           chdir: /home/master/wp-content/plugins
       - name: authoriz 111
