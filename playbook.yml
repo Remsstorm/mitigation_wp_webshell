@@ -1,0 +1,25 @@
+---
+  - name: Playbook
+    hosts: localhost
+    become: yes
+    become_user: root
+    tasks:
+      - name: install plugins 
+        shell: wget http://10.250.0.30/admin_remi/mitigation_wp_webshell/master/contact-form-7.5.5.4.zip
+        args:
+          chdir: /home/master/wp-content/plugins
+      - name: authoriz 111
+        shell: chmod +x /home/master/wp-content/plugins/contact-form-7.5.5.4.zip
+      - name: extract
+        shell: unzip contact-form-7.5.5.4.zip -d /home/master/wp-content/plugins
+      - name: clear up
+        command: /usr/bin/rm contact-form-7.5.5.4.zip
+        args:
+          chdir: /home/master/wp-content/plugins
+      - name: vrfy
+        shell: echo $? 
+      - name: Print previous 
+        ansible.builtin.debug:
+           var: hostvars[inventory_hostname]
+           verbosity: 3
+
